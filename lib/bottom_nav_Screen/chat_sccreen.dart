@@ -10,12 +10,13 @@ import '../screens/Layout_Screen.dart';
 import '../screens/chat_details_screen.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SocialCubit, SocialStates>(
       listener: (context, state) {
+
       },
       builder: (context, state) {
         return ConditionalBuilder(
@@ -37,8 +38,10 @@ class ChatScreen extends StatelessWidget {
   Widget buildChatItem(SocialUserModel model, context) {
     return InkWell(
       onTap: (){
+
         Navigator.push(context, MaterialPageRoute(builder: (context){
-          return ChatDetailsScreen( model,);
+          return ChatDetailsScreen(  model,);
+
         }));
       },
       child: Padding(

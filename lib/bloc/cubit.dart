@@ -28,7 +28,7 @@ List <dynamic>? userData;
   void getUserData(){
     emit(SocialGetUserLoadingsState());
     FirebaseFirestore.instance.collection('users')
-        .doc('BJr2rsCpMSeo44sRuW9X0JfNor13').get()
+        .doc('NCfXphdKljRbgWq8Nre4Ktbwe772').get()
         .then((value) {
       print(value.data());
       userModel = SocialUserModel.fromJson(value.data()!);
@@ -480,16 +480,14 @@ List<MessageModel> messages = [];
         .collection('chats')
         .doc(receiverId)
         .collection('messages').orderBy('dateTime')
-        .snapshots() // stream (Q of Future)
-        .listen((event) {
+        .snapshots()// stream (Q of Future)
+        .listen((event)  {
           messages=[];
           event.docs.forEach((element) {
             messages.add(MessageModel.fromJson(element.data()));
           });
           emit(SocialGetMessageSuccessState());
-
     });
-
   }
 
 }
