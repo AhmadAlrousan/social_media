@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "20212718435",
+    "project_id": "socilaapp-62231",
+    "storage_bucket": "socilaapp-62231.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20212718435:android:85a1c32b3b5698a9ec5156",
+        "android_client_info": {
+          "package_name": "com.example.social_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20212718435-17b6ba34ks39dq0bb6f22lquas0fr445.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.social_app",
+            "certificate_hash": "e0370a948afe4f9a159cb0f418ab201298129e63"
+          }
+        },
+        {
+          "client_id": "20212718435-9dg10jmst6sie0e6bqdka01nuuarliis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtlIL3rjzkGw3jIlXqKcebUqCoOqmFv2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20212718435-9dg10jmst6sie0e6bqdka01nuuarliis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
