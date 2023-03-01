@@ -126,7 +126,6 @@ List <dynamic>? userData;
         .then((value){
           value.ref.getDownloadURL()
               .then((value) {
-//            emit(SocialUploadProfileImageSuccessState());
             print(value);
             updateUser(
                 name: name,
@@ -471,7 +470,7 @@ List <dynamic>? userData;
 
 
 List<MessageModel> messages = [];
-  
+
   void getMessage({required String receiverId,}){
     
     FirebaseFirestore.instance
@@ -479,7 +478,7 @@ List<MessageModel> messages = [];
         .doc(userModel!.uId)
         .collection('chats')
         .doc(receiverId)
-        .collection('messages').orderBy('dateTime')
+        .collection('messages').orderBy('dateTime',descending: false)
         .snapshots()// stream (Q of Future)
         .listen((event)  {
           messages=[];
@@ -490,4 +489,136 @@ List<MessageModel> messages = [];
     });
   }
 
+///....................................
+  ///
+  ///
+  ///
+  ///
+  File? messageImage ;
+
+  Future<void> getMessageImage()async{
+    final pickedFile=await picker.getImage
+      (source: ImageSource.gallery);
+
+    if(pickedFile != null){
+      messageImage=File(pickedFile.path);
+      emit(SocialMessageImagePickedSuccessState());
+    }else{
+      print("No image selected");
+      emit(SocialMessageImagePickedErrorState());
+    }
+
+  }
+
+
+  void removeMessageImage(){
+    messageImage = null;
+    emit(SocialRemoveMessageImageState());
+  }
+
+
+  void uploadMessageImage({
+
+    required String dateTime,
+    required String text,
+    required String receiverId,
+
+  }){
+    emit(SocialCreateMessageLoadingState());
+
+    firebase_storage.FirebaseStorage
+        .instance.ref().
+    child('message/${Uri.file
+      (messageImage!.path)
+        .pathSegments.last}').putFile(messageImage!)
+        .then((value){
+      value.ref.getDownloadURL()
+          .then((value) {
+        print(value);
+        sendMessageImage(
+            dateTime: dateTime,
+            messageImage: value,
+            receiverId: receiverId);
+      }).catchError((error){
+        emit(SocialCreateMessageErrorState());
+
+      });
+    }).catchError((error){
+      emit(SocialCreateMessageErrorState());
+
+    });
+  }
+
+  void sendMessageImage
+      ({
+    required String receiverId,
+    required String dateTime,
+    required String messageImage,
+  })
+
+  {
+
+    MessageModel model = MessageModel(
+      messageImage: messageImage,
+      senderId: userModel?.uId,
+      receiverId: receiverId,
+      dateTime: dateTime,
+    );
+
+    // set my chat
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(userModel?.uId)
+        .collection('chats')
+        .doc(receiverId).collection('messages')
+        .add(model.toMap())
+        .then((value) {
+      emit(SocialSendMessageImageSuccessState());
+
+    }).catchError((error){
+      emit(SocialSendMessageImageErrorState());
+    });
+
+    // set receiver chat
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(receiverId)
+        .collection('chats')
+        .doc(userModel?.uId).collection('messages')
+        .add(model.toMap())
+        .then((value) {
+      emit(SocialSendMessageSuccessState());
+
+    }).catchError((error){
+      emit(SocialSendMessageErrorState());
+    });
+  }
+  void createMessageImage({
+
+    required String dateTime,
+    required String text,
+    String? messageImage,
+    required String receiverId,
+  })
+  {
+    emit(SocialCreateImageMessageLoadingState());
+
+    MessageModel model = MessageModel(
+      messageImage:messageImage??"" ,
+        dateTime: dateTime,
+        text: text,
+      receiverId: receiverId,
+      senderId: userModel?.uId
+
+    );
+    FirebaseFirestore.instance.collection('posts').
+    add(model.toMap())
+        .then((value) {
+      emit(SocialCreateImageMessageSuccessState());
+    }).catchError((error){
+      emit(SocialCreateImageMessageErrorState());
+    });
+
+  }
 }

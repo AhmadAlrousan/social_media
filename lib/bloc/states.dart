@@ -101,3 +101,22 @@ class SocialSendMessageErrorState extends SocialStates{}
 
 class SocialGetMessageSuccessState extends SocialStates{}
 
+class SocialMessageImagePickedSuccessState extends SocialStates{}
+
+class SocialMessageImagePickedErrorState extends SocialStates{}
+
+class SocialRemoveMessageImageState extends SocialStates{}
+
+class SocialCreateMessageLoadingState extends SocialStates{}
+
+class SocialCreateMessageErrorState extends SocialStates{}
+
+class SocialSendMessageImageSuccessState extends SocialStates{}
+
+class SocialSendMessageImageErrorState extends SocialStates{}
+
+class SocialCreateImageMessageSuccessState extends SocialStates{}
+
+class SocialCreateImageMessageLoadingState extends SocialStates{}
+
+class SocialCreateImageMessageErrorState extends SocialStates{}

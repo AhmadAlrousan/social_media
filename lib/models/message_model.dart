@@ -6,12 +6,15 @@ class MessageModel{
   String? receiverId;
   String? dateTime;
   String? text;
+  String? messageImage;
+
 
   MessageModel({
   this.senderId,
     this.receiverId,
     this.dateTime,
     this.text,
+    this.messageImage
   });
 
   MessageModel.fromJson(Map<String , dynamic> json)
@@ -21,6 +24,7 @@ class MessageModel{
     receiverId = json['receiverId'];
     dateTime = json['dateTime'];
     text = json['text'];
+    messageImage = json['messageImage'];
 
   }
 
@@ -30,6 +34,7 @@ class MessageModel{
       'receiverId':receiverId,
       'dateTime':dateTime,
       'text':text,
+      'messageImage':messageImage,
 
     };
   }
