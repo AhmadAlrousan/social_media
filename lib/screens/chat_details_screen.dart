@@ -60,14 +60,16 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                 children: [
                   Expanded(
                     child: ListView.separated(
+                      reverse: true,
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           var message =
                               SocialCubit.get(context).messages[index];
-                          if (SocialCubit.get(context).userModel!.uId == message.senderId)
+                          if (SocialCubit.get(context).userModel!.uId != message.senderId) {
+                            return buildMessage(message);
+                          }else {
                             return buildMyMessage(message);
-
-                          return buildMessage(message);
+                          }
                         },
                         separatorBuilder: (context, state) => SizedBox(
                               height: 15,
