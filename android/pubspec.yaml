@@ -1,4 +1,4 @@
-name: social_app
+name: android
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -30,24 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
-  shared_preferences:
-  bloc:
-  conditional_builder_null_safety: ^0.0.6
-  firebase_core: ^2.5.0
-  firebase_auth: ^4.2.6
-  cloud_firestore: ^4.4.0
-  dio: ^4.0.6
-  fluttertoast: ^8.1.1
-  image_picker: ^0.8.6+2
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_storage: ^11.0.14
-  firebase_messaging: ^14.2.5
-  toast:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -100,7 +88,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  assets:
-    - assets/
-    - assets/colin-fearing.jpg
-
